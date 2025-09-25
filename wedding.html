@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Undangan Pernikahan — Wahyu & Riski</title>
+  <meta name="description" content="Undangan Pernikahan Wahyu & Riski" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Great+Vibes&family=Scheherazade+New:wght@700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --accent:#ff5c8a; --accent-2:#3ecf8e; --bg:#ffffff; --text:#222;
+      --muted:#6b7280; --card:#f9fafb; --shadow:0 10px 25px rgba(0,0,0,.08);
+      --radius:22px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);
+      font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans";
+      scroll-behavior:smooth}
+    img{max-width:100%;display:block}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    .container{max-width:980px;margin:0 auto;padding:0 18px}
+    .title-script{font-family:"Great Vibes",cursive}
+    .title-serif{font-family:"Scheherazade New",serif}
+    .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .muted{color:var(--muted)}
+    .center{text-align:center}
+
+    /* COVER (Open Invitation) */
+    #cover{position:fixed;inset:0;background:#fff;z-index:50;display:flex;align-items:center;justify-content:center}
+    #cover .wrap{max-width:520px;text-align:center;padding:32px}
+    .circle{width:210px;height:210px;border-radius:50%;overflow:hidden;margin:22px auto;border:6px solid #fff;box-shadow:0 12px 35px rgba(0,0,0,.12)}
+    .cover-title{font:700 44px/1.1 "Great Vibes",cursive;margin:10px 0 6px}
+    .btn{display:inline-flex;align-items:center;gap:.6rem;padding:.9rem 1.2rem;border-radius:999px;border:0;cursor:pointer;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,.12) inset, 0 6px 24px rgba(0,0,0,.10)}
+    .btn-primary{background:var(--accent);color:#fff;box-shadow:0 10px 18px rgba(255,92,138,.35)}
+    .btn-outline{border:1px solid #e5e7eb;background:#fff}
+    .chip{display:inline-block;border:1px solid #e5e7eb;border-radius:999px;padding:.3rem .75rem;background:#fff}
+
+    /* HERO */
+    #hero{position:relative;padding:84px 0 36px;overflow:hidden}
+    #hero .circle{width:240px;height:240px}
+    .subtitle{color:var(--muted);font-weight:500;letter-spacing:.03em}
+    .couple-name{font:700 48px/1 "Great Vibes",cursive;margin:14px 0 10px}
+    .date{font-weight:600;margin-bottom:14px}
+    .scroll-ind{margin-top:24px;display:inline-flex;flex-direction:column;align-items:center;gap:10px;color:var(--muted)}
+    .mouse{width:26px;height:42px;border-radius:20px;border:2px solid #d1d5db;position:relative}
+    .mouse::after{content:"";width:4px;height:8px;background:#d1d5db;border-radius:999px;position:absolute;left:50%;transform:translateX(-50%);top:8px;animation:wheel 1.6s infinite}
+    @keyframes wheel{0%{opacity:0;top:8px}50%{opacity:1}100%{opacity:0;top:18px}}
+
+    /* SECTIONS */
+    .arabic{font-family:"Scheherazade New",serif;font-size:30px;line-height:1.6}
+    .section{padding:56px 0}
+    .section h2{font:700 40px "Great Vibes",cursive;text-align:center;margin:0 0 20px}
+    .profile{display:grid;grid-template-columns:1fr;gap:28px;align-items:center;justify-items:center}
+    .profile .circle{width:220px;height:220px}
+    .amp{font:700 54px/1 "Great Vibes",cursive;text-align:center;margin:4px 0}
+    .bio{max-width:520px}
+    .heart-float{position:fixed;right:14px;bottom:104px;z-index:3;opacity:.5;pointer-events:none;filter:drop-shadow(0 4px 8px rgba(0,0,0,.1))}
+
+    /* TANGGAL */
+    #tanggal .timer{display:flex;gap:16px;justify-content:center;align-items:center;flex-wrap:wrap;background:#fff;border-radius:999px;padding:14px 22px;box-shadow:var(--shadow)}
+    #tanggal .timer .cell{min-width:95px;text-align:center}
+    #tanggal .timer .big{font-size:30px;font-weight:700}
+    #tanggal .timer .lbl{font-size:13px;color:var(--muted)}
+    .timeline{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:740px;margin:22px auto}
+    .timeline .kartu{padding:22px;border-radius:18px;background:#fff;box-shadow:var(--shadow);text-align:center}
+    .dress{display:flex;justify-content:center;gap:16px;margin:14px 0 8px}
+    .swatch{width:40px;height:40px;border-radius:50%;box-shadow:0 8px 16px rgba(0,0,0,.12);border:3px solid #fff}
+
+    /* GALERI */
+    #galeri .gallery{position:relative;border-radius:24px;overflow:hidden;box-shadow:var(--shadow)}
+    .slides{display:flex;transition:transform .5s ease}
+    .slides img{width:100%;object-fit:cover;height:320px}
+    .nav-arrow{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.7);border:0;box-shadow:var(--shadow);cursor:pointer}
+    .nav-arrow.left{left:14px}.nav-arrow.right{right:14px}
+    .dots{display:flex;gap:8px;justify-content:center;padding:10px}
+    .dot{width:8px;height:8px;border-radius:50%;background:#e5e7eb}
+    .dot.active{background:var(--accent)}
+
+    /* LOVE GIFT */
+    .gift-card{padding:24px;border-radius:20px;background:#fff;box-shadow:var(--shadow)}
+    .copy{display:inline-flex;align-items:center;gap:10px;padding:.6rem .9rem;border-radius:999px;border:1px solid #e5e7eb;background:#fff;cursor:pointer}
+
+    /* UCAPAN */
+    #ucapan .form{display:grid;gap:12px}
+    .input, select, textarea{width:100%;padding:14px 16px;border:1px solid #e5e7eb;border-radius:14px;background:#fff;outline:none}
+    textarea{min-height:110px;resize:vertical}
+    .blue-tip{background:#cffafe;border:1px solid #a5f3fc;color:#0e7490;padding:16px;border-radius:12px}
+    .list{margin-top:16px}
+    .comment{background:#fff;border-radius:14px;box-shadow:var(--shadow);padding:14px 14px 10px;margin:12px 0}
+    .comment .hdr{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+    .avatar{width:34px;height:34px;border-radius:50%;background:#f3f4f6;display:grid;place-items:center;font-weight:600}
+    .actions{display:flex;align-items:center;gap:8px;margin-top:8px;color:#6b7280}
+    .bubble{min-width:28px;padding:2px 8px;border-radius:999px;background:#f3f4f6;text-align:center}
+    .reply-box{margin-top:8px}
+    .reply{margin:8px 0 0 42px;padding-left:8px;border-left:3px solid #f3f4f6}
+
+    /* BOTTOM NAV */
+    .tabnav{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid #eee;z-index:40}
+    .tabnav .bar{display:grid;grid-template-columns:repeat(5,1fr);max-width:980px;margin:0 auto}
+    .tabnav a{display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px 0 12px;color:#374151;font-size:12px}
+    .tabnav a.active{color:var(--accent)}
+    .icon{width:22px;height:22px}
+
+    @media (min-width:820px){ .profile{grid-template-columns:1fr 1fr} }
+    @media (max-width:480px){ .couple-name{font-size:42px} #hero .circle{width:210px;height:210px} }
+  </style>
+</head>
+<body>
+
+<!-- ====== COVER ====== -->
+<section id="cover" aria-label="Cover">
+  <div class="wrap card">
+    <h3 class="subtitle">The Wedding Of</h3>
+    <div class="circle"><img src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?q=80&w=1080&auto=format&fit=crop" alt="Couple"></div>
+    <h1 class="cover-title">Wahyu &amp; Riski</h1>
+    <p class="muted" style="margin:8px 0 18px">Kepada Yth Bapak/Ibu/Saudara/i</p>
+    <div class="chip" id="guestChip">Tamu Undangan</div>
+    <div style="margin-top:18px">
+      <button class="btn btn-primary" id="openBtn">✉️ Open Invitation</button>
+    </div>
+  </div>
+</section>
+
+<!-- ====== HERO ====== -->
+<header id="home">
+  <section id="hero" class="center container">
+    <div class="confetti" id="confetti"></div>
+    <div class="circle"><img src="https://images.unsplash.com/photo-1543852786-1cf6624b9987?q=80&w=1080&auto=format&fit=crop" alt="Couple"></div>
+    <h2 class="subtitle" style="margin-top:10px">Undangan Pernikahan</h2>
+    <div class="couple-name">Wahyu &amp; Riski</div>
+    <div class="date" id="fullDate">Rabu, 15 Maret 2023</div>
+    <a id="gcalLink" class="btn btn-outline" href="#" target="_blank" rel="noopener">🗓️ Save Google Calendar</a>
+    <div class="scroll-ind"><div class="mouse"></div><small>Scroll Down</small></div>
+  </section>
+</header>
+
+<!-- ====== PEMBUKA ====== -->
+<section class="section container center">
+  <div class="arabic title-serif">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
+  <h2>Assalamualaikum Warahmatullahi Wabarakatuh</h2>
+  <p class="muted" style="max-width:760px;margin:0 auto">
+    Tanpa mengurangi rasa hormat, kami mengundang Anda untuk berkenan menghadiri acara pernikahan kami:
+  </p>
+</section>
+
+<!-- ====== MEMPELAI ====== -->
+<section id="mempelai" class="section container">
+  <div class="profile">
+    <div class="center">
+      <div class="circle"><img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?q=80&w=1080&auto=format&fit=crop" alt="Mempelai Pria"></div>
+      <h3 class="title-script" style="font-size:36px;margin:14px 0 4px">Nama Wahyu Siapa</h3>
+      <div class="muted">Putra ke-1</div>
+      <div class="bio muted">Bapak lorem ipsum<br/>dan<br/>Ibu lorem ipsum</div>
+    </div>
+    <div class="center">
+      <div class="circle"><img src="https://images.unsplash.com/photo-1583336669499-f75b1f91a6a4?q=80&w=1080&auto=format&fit=crop" alt="Mempelai Wanita"></div>
+      <h3 class="title-script" style="font-size:36px;margin:14px 0 4px">Nama Riski Siapa</h3>
+      <div class="muted">Putri ke-1</div>
+      <div class="bio muted">Bapak lorem ipsum<br/>dan<br/>Ibu lorem ipsum</div>
+    </div>
+  </div>
+  <div class="amp">&amp;</div>
+</section>
+
+<img class="heart-float" width="64" height="64" alt="heart"
+     src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 24 24' fill='%23ff5c8a'><path d='M12 21s-7.5-4.35-10-8.5C-1.17 7.58 3.03 3 7.5 5.09 8.97 5.8 10 7.16 12 9.5c2-2.34 3.03-3.7 4.5-4.41C21 3 25.17 7.58 22 12.5 19.5 16.65 12 21 12 21z'/></svg>">
+
+<!-- ====== TANGGAL ====== -->
+<section id="tanggal" class="section container center">
+  <h2>Moment Bahagia</h2>
+
+  <div class="timer" id="countdown" aria-label="Countdown">
+    <div class="cell"><div class="big" id="d">000</div><div class="lbl">Hari</div></div>
+    <div class="cell"><div class="big" id="h">00</div><div class="lbl">Jam</div></div>
+    <div class="cell"><div class="big" id="m">00</div><div class="lbl">Menit</div></div>
+    <div class="cell"><div class="big" id="s">00</div><div class="lbl">Detik</div></div>
+  </div>
+
+  <p class="muted" style="max-width:760px;margin:18px auto">
+    Dengan memohon rahmat dan ridho Allah Subhanahu Wa Ta'ala, insyaAllah kami akan menyelenggarakan acara:
+  </p>
+
+  <div class="timeline">
+    <div class="kartu">
+      <h3 class="title-script" style="font-size:34px;margin:8px 0">Akad</h3>
+      <div class="muted">Pukul <b>10.00 WIB</b> - Selesai</div>
+    </div>
+    <div class="kartu">
+      <h3 class="title-script" style="font-size:34px;margin:8px 0">Resepsi</h3>
+      <div class="muted">Pukul <b>13.00 WIB</b> - Selesai</div>
+    </div>
+  </div>
+
+  <p class="muted" style="max-width:760px;margin:8px auto">
+    Demi kehangatan bersama, kami memohon kesediaan Anda untuk mengenakan dress code berikut:
+  </p>
+  <div class="dress">
+    <div class="swatch" style="background:#ffffff"></div>
+    <div class="swatch" style="background:#a7f3d0"></div>
+    <div class="swatch" style="background:#22c55e"></div>
+  </div>
+
+  <div style="margin:18px 0">
+    <a class="btn btn-outline" target="_blank" rel="noopener"
+       href="https://maps.google.com/?q=RT%2010%20RW%2002,%20Desa%20Pajerukan,%20Kec.%20Kalibagor,%20Kab.%20Banyumas,%20Jawa%20Tengah%2053191">
+      📍 Lihat Google Maps
+    </a>
+  </div>
+  <div class="muted" style="max-width:760px;margin:6px auto">
+    RT 10 RW 02, Desa Pajerukan, Kec. Kalibagor, Kab. Banyumas, Jawa Tengah 53191.
+  </div>
+</section>
+
+<!-- ====== GALERI ====== -->
+<section id="galeri" class="section container">
+  <h2 class="center">Galeri</h2>
+  <div class="gallery">
+    <div class="slides" id="slides">
+      <img src="https://images.unsplash.com/photo-1416400639808-f41f0c149b09?q=80&w=1280&auto=format&fit=crop" alt="Slide 1">
+      <img src="https://images.unsplash.com/photo-1520975693416-35e394657cb1?q=80&w=1280&auto=format&fit=crop" alt="Slide 2">
+      <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1280&auto=format&fit=crop" alt="Slide 3">
+    </div>
+    <button class="nav-arrow left" id="prev" aria-label="Sebelumnya">‹</button>
+    <button class="nav-arrow right" id="next" aria-label="Berikutnya">›</button>
+    <div class="dots" id="dots"></div>
+  </div>
+</section>
+
+<!-- ====== LOVE GIFT ====== -->
+<section id="gift" class="section container">
+  <h2 class="center">Love Gift</h2>
+  <div class="gift-card">
+    <p class="muted">Dengan hormat, bagi Anda yang ingin memberikan tanda kasih, bisa melalui rekening berikut:</p>
+    <div style="display:grid;gap:12px;margin-top:10px">
+      <div><b>Bank BCA</b> — a.n. <b>Wahyu</b><br/>No. Rek: <span id="rek1">1234567890</span></div>
+      <div><b>Bank BRI</b> — a.n. <b>Riski</b><br/>No. Rek: <span id="rek2">9876543210</span></div>
+    </div>
+    <div style="margin-top:14px;display:flex;gap:12px;flex-wrap:wrap">
+      <button class="copy" data-target="#rek1">Salin No. Rekening 1</button>
+      <button class="copy" data-target="#rek2">Salin No. Rekening 2</button>
+    </div>
+  </div>
+</section>
+
+<!-- ====== UCAPAN ====== -->
+<section id="ucapan" class="section container">
+  <h2 class="center">Ucapan &amp; Doa</h2>
+
+  <div class="blue-tip" style="margin-bottom:12px">
+    <b>Bestieee!!!</b><br/>Cobain like seperti Instagram, dengan tap tap bagian komentarnya.<br/>
+    Sama bisa format text seperti Whatsapp lohh… cobain jugaaa, makaciwww bestieee 😄
+  </div>
+
+  <div class="form card" style="padding:18px">
+    <label>Nama<br/><input class="input" id="namaInput" placeholder="Nama Anda" /></label>
+    <label>Presensi<br/>
+      <select id="presensi">
+        <option value="">Konfirmasi Presensi</option>
+        <option value="Hadir">Hadir</option>
+        <option value="Mungkin">Mungkin</option>
+        <option value="Tidak bisa hadir">Tidak bisa hadir</option>
+      </select>
+    </label>
+    <label>Ucapan &amp; Doa<br/><textarea id="pesanInput" placeholder="Tulis Ucapan dan Doa"></textarea></label>
+    <div><button class="btn btn-primary" id="kirimBtn">✈️ Send</button></div>
+    <small class="muted" id="statusLine"></small>
+  </div>
+
+  <div class="list" id="listKomentar"></div>
+</section>
+
+<!-- ====== BOTTOM NAV ====== -->
+<nav class="tabnav" aria-label="Navigasi bawah">
+  <div class="bar container" style="padding:0 8px">
+    <a href="#home" class="tab active" data-tab="home">
+      <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3l9 8h-3v9h-5v-6H11v6H6v-9H3z"/></svg> Home
+    </a>
+    <a href="#mempelai" class="tab" data-tab="mempelai">
+      <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V20h14v-3.5C15 14.17 10.33 13 8 13zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.96 1.97 3.45V20h6v-3.5c0-2.33-4.67-3.5-7-3.5z"/></svg> Mempelai
+    </a>
+    <a href="#tanggal" class="tab" data-tab="tanggal">
+      <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10h5v5H7z"/><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-2 .89-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2zM19 20H5V9h14v11z"/></svg> Tanggal
+    </a>
+    <a href="#galeri" class="tab" data-tab="galeri">
+      <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M21 19V5c0-1.1-.9-2-2-2H5C3.9 3 3 3.9 3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg> Galeri
+    </a>
+    <a href="#ucapan" class="tab" data-tab="ucapan">
+      <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4C2.9 2 2 2.9 2 4v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg> Ucapan
+    </a>
+  </div>
+</nav>
+
+<!-- ====== AUDIO ====== -->
+<audio id="bgm" preload="none" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/31/audio_6a9969e0c1.mp3?filename=romantic-sentimental-111401.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  /* ===================== KONFIG API ===================== */
+  // Pakai Web App yang sudah terbukti OK (sesuai link yang Anda kirim)
+  const API_URL   = 'https://script.google.com/macros/s/AKfycbwFVyzKrK28MRzxKWZRvAXpEf6pgN5i4Ke9-MMcAZD4hfnLVp0Xsou8NY8WEuhxAzoR/exec';
+  const API_TOKEN = 'rahasia_123'; // samakan dengan Script Properties (API_TOKEN)
+
+  /* ===================== UTIL ===================== */
+  const $  = (sel, ctx=document)=>ctx.querySelector(sel);
+  const $$ = (sel, ctx=document)=>Array.from(ctx.querySelectorAll(sel));
+  const statusLine = $('#statusLine');
+  function setStatus(msg, ok=true){ if(!statusLine) return; statusLine.textContent = msg||''; statusLine.style.color = ok ? '#6b7280' : '#b91c1c'; }
+  function escapeHtml(str){ return (str||'').replace(/[&<>"']/g, m=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;' }[m])); }
+  function formatWhatsapp(t){ return escapeHtml(t).replace(/\*\*(.+?))\*\*/g,'<b>$1</b>').replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/_(.+?)_/g,'<i>$1</i>').replace(/~(.+?)~/g,'<s>$1</s>').replace(/```([\s\S]+?)```/g,'<code style="background:#f3f4f6;padding:2px 6px;border-radius:6px;display:inline-block">$1</code>'); }
+  function timeAgo(ts){ const s=Math.floor((Date.now()-ts)/1000); if(s<60) return s+' detik yang lalu'; const m=Math.floor(s/60); if(m<60) return m+' menit yang lalu'; const h=Math.floor(m/60); if(h<24) return h+' jam yang lalu'; const d=Math.floor(h/24); return d+' hari yang lalu'; }
+  function ts(v){ const n = Date.parse(v); return isNaN(n) ? Date.now() : n; }
+
+  /* ===================== PARAM TAMU & COVER ===================== */
+  const qs = new URLSearchParams(location.search);
+  const guest = qs.get('to') ? decodeURIComponent(qs.get('to')) : '';
+  if(guest){ $('#guestChip').textContent = guest; const nm=$('#namaInput'); if(nm) nm.value = guest; }
+  const cover = $('#cover'), openBtn = $('#openBtn'), bgm = $('#bgm');
+  function spawnConfetti(){ const box = $('#confetti'); if(!box) return; box.innerHTML=''; for(let i=0;i<80;i++){ const s=document.createElement('span'); s.style.setProperty('--x', Math.random()*100+'%'); s.style.setProperty('--d', (6+Math.random()*6)+'s'); s.style.setProperty('--delay', (Math.random()*3)+'s'); box.appendChild(s); } }
+  openBtn.addEventListener('click', ()=>{ cover.style.display='none'; try{ bgm.play().catch(()=>{});}catch(e){} spawnConfetti(); location.hash='#home'; });
+
+  /* ===================== TANGGAL + GCAL + COUNTDOWN ===================== */
+  const WEDDING_DATE = new Date('2025-12-20T10:00:00+07:00');
+  const formatter = new Intl.DateTimeFormat('id-ID',{weekday:'long', day:'numeric', month:'long', year:'numeric'});
+  $('#fullDate').textContent = formatter.format(WEDDING_DATE);
+  function pad(n){return n<10?'0'+n:n}
+  function toCalDate(d){ return d.getFullYear()+''+pad(d.getMonth()+1)+''+pad(d.getDate())+'T'+pad(d.getHours())+pad(d.getMinutes())+'00'; }
+  $('#gcalLink').href = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent('Wahyu & Riski — Akad & Resepsi')}&dates=${toCalDate(WEDDING_DATE)}/${toCalDate(new Date(WEDDING_DATE.getTime()+3*60*60*1000))}&location=${encodeURIComponent('RT 10 RW 02, Desa Pajerukan, Kec. Kalibagor, Kab. Banyumas, Jawa Tengah 53191')}&ctz=Asia/Jakarta&details=${encodeURIComponent('Acara pernikahan Wahyu & Riski')}`;
+  const d = $('#d'), h=$('#h'), m=$('#m'), s=$('#s');
+  function tick(){ const now=new Date(); let diff=Math.max(0, WEDDING_DATE-now); const days=Math.floor(diff/86400000); diff-=days*86400000; const hours=Math.floor(diff/3600000); diff-=hours*3600000; const mins=Math.floor(diff/60000); diff-=mins*60000; const secs=Math.floor(diff/1000); d.textContent=String(days).padStart(3,'0'); h.textContent=String(hours).padStart(2,'0'); m.textContent=String(mins).padStart(2,'0'); s.textContent=String(secs).padStart(2,'0'); }
+  tick(); setInterval(tick,1000);
+
+  /* ===================== GALERI ===================== */
+  const slides = $('#slides'), imgs = $$('#slides img'), dotsBox = $('#dots');
+  let idx = 0; imgs.forEach((_,i)=>{ const dot=document.createElement('div'); dot.className='dot'+(i===0?' active':''); dotsBox.appendChild(dot); });
+  const dots = $$('.dot', dotsBox);
+  function go(i){ idx=(i+imgs.length)%imgs.length; slides.style.transform=`translateX(${-idx*100}%)`; dots.forEach((d,j)=>d.classList.toggle('active', j===idx)); }
+  $('#prev').onclick = ()=>go(idx-1); $('#next').onclick = ()=>go(idx+1); setInterval(()=>go(idx+1), 5000);
+
+  /* ===================== COPY REKENING ===================== */
+  $$('.copy').forEach(btn=>{
+    btn.addEventListener('click', async ()=>{
+      const target = document.querySelector(btn.dataset.target);
+      try{ await navigator.clipboard.writeText(target.textContent.trim()); btn.textContent='Disalin ✔'; setTimeout(()=>btn.textContent='Salin No. Rekening',1500); }
+      catch(e){ alert('Gagal menyalin'); }
+    });
+  });
+
+  /* ===================== DATA LAYER (APPS SCRIPT) ===================== */
+  async function apiList(){
+    const url = `${API_URL}?action=list&token=${encodeURIComponent(API_TOKEN)}`;
+    const res = await fetch(url, {headers:{'Accept':'application/json'}});
+    if(!res.ok){ const t = await res.text().catch(()=> ''); throw new Error(`HTTP ${res.status} ${t}`); }
+    const json = await res.json();
+    if(!json.ok) throw new Error(json.error||'API error');
+    // FIX: filter deleted yang benar
+    return (json.data||[]).filter(x => String(x.deleted).toLowerCase() !== 'true');
+  }
+  async function apiAdd({nama, presensi, pesan, to, parent_id=''}) {
+    const res = await fetch(API_URL, {
+      method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body: JSON.stringify({action:'add', token:API_TOKEN, nama, presensi, pesan, to, parent_id})
+    });
+    if(!res.ok){ const t = await res.text().catch(()=> ''); throw new Error(`HTTP ${res.status} ${t}`); }
+    const json = await res.json(); if(!json.ok) throw new Error(json.error||'Gagal simpan'); return json.id;
+  }
+  async function apiLike(id){
+    const res = await fetch(API_URL, {
+      method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body: JSON.stringify({action:'like', token:API_TOKEN, id})
+    });
+    if(!res.ok){ const t = await res.text().catch(()=> ''); throw new Error(`HTTP ${res.status} ${t}`); }
+    const json = await res.json(); if(!json.ok) throw new Error(json.error||'Gagal like');
+  }
+  async function apiReply(parent_id, {nama, pesan, to}){
+    const res = await fetch(API_URL, {
+      method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body: JSON.stringify({action:'reply', token:API_TOKEN, parent_id, nama, pesan, to})
+    });
+    if(!res.ok){ const t = await res.text().catch(()=> ''); throw new Error(`HTTP ${res.status} ${t}`); }
+    const json = await res.json(); if(!json.ok) throw new Error(json.error||'Gagal reply'); return json.id;
+  }
+
+  /* ===================== KOMENTAR: RENDER ===================== */
+  const list = $('#listKomentar'); let COMMENTS = [];
+  function tsVal(v){ const n = Date.parse(v); return isNaN(n) ? Date.now() : n; }
+  function groupComments(items){
+    const byParent = new Map();
+    items.forEach(it=>{ if(it.parent_id){ if(!byParent.has(it.parent_id)) byParent.set(it.parent_id, []); byParent.get(it.parent_id).push(it); }});
+    const parents = items.filter(it=>!it.parent_id).sort((a,b)=>tsVal(b.created_at)-tsVal(a.created_at));
+    parents.forEach(p=>{ p._replies = (byParent.get(p.id)||[]).sort((a,b)=>tsVal(a.created_at)-tsVal(b.created_at)); });
+    return parents;
+  }
+  function render(){
+    list.innerHTML='';
+    const parents = groupComments(COMMENTS);
+    if(!parents.length){ const empty=document.createElement('div'); empty.className='muted'; empty.style.margin='12px 0'; empty.textContent='Belum ada ucapan. Jadilah yang pertama 🎉'; list.appendChild(empty); return; }
+    parents.forEach(item=>{
+      const el=document.createElement('div'); el.className='comment';
+      el.innerHTML = `
+        <div class="hdr">
+          <div class="avatar">${(item.nama||'?').slice(0,1).toUpperCase()}</div>
+          <div><b>${escapeHtml(item.nama||'Tamu')}</b>
+            <div class="muted" style="font-size:12px">${timeAgo(ts(item.created_at))} • ${escapeHtml(item.presensi||'')}</div>
+          </div>
+        </div>
+        <div class="body" style="white-space:pre-wrap">${formatWhatsapp(item.pesan||'')}</div>
+        <div class="actions">
+          <button class="bubble like" title="Suka">❤ <span class="cnt">${Number(item.likes||0)}</span></button>
+          <button class="btn btn-outline reply-btn" style="padding:.3rem .6rem;font-size:12px">Reply</button>
+        </div>
+        <div class="replies"></div>
+      `;
+      // replies
+      const repsBox = el.querySelector('.replies');
+      (item._replies||[]).forEach(r=>{
+        const rr=document.createElement('div'); rr.className='reply';
+        rr.innerHTML = `<b>${escapeHtml(r.nama||'')}</b> <span class="muted" style="font-size:12px">${timeAgo(tsVal(r.created_at))}</span>
+                        <div style="white-space:pre-wrap">${formatWhatsapp(r.pesan||'')}</div>`;
+        repsBox.appendChild(rr);
+      });
+      // like (batasi sekali per sesi)
+      const likeOnceKey = 'liked_'+item.id;
+      function doLike(){ if(sessionStorage.getItem(likeOnceKey)) return; sessionStorage.setItem(likeOnceKey,'1');
+        apiLike(item.id).then(loadAndRender).catch(err=>{ console.error(err); setStatus('Gagal mengirim like', false); sessionStorage.removeItem(likeOnceKey); }); }
+      el.querySelector('.body').addEventListener('click', doLike);
+      el.querySelector('.like').addEventListener('click', doLike);
+      // reply UI
+      el.querySelector('.reply-btn').addEventListener('click', ()=>{
+        const box=document.createElement('div'); box.className='reply-box';
+        box.innerHTML=`<input class="input" placeholder="Nama" value="${escapeHtml($('#namaInput').value||guest||'Tamu')}" style="margin-bottom:8px"/>
+                       <textarea class="input" placeholder="Tulis balasan"></textarea>
+                       <div style="margin-top:6px"><button class="btn btn-primary">Kirim</button></div>`;
+        el.appendChild(box);
+        box.querySelector('button').addEventListener('click', ()=>{
+          const nm=box.querySelector('input').value.trim()||'Tamu';
+          const msg=box.querySelector('textarea').value.trim();
+          if(!msg){ alert('Tuliskan balasan'); return; }
+          setStatus('Mengirim balasan…');
+          apiReply(item.id, {nama:nm, pesan:msg, to:guest}).then(()=>{ setStatus('Balasan terkirim'); loadAndRender(); })
+            .catch(err=>{ console.error(err); setStatus('Gagal mengirim balasan', false); });
+        },{once:true});
+      });
+      list.appendChild(el);
+    });
+  }
+
+  async function loadAndRender(){
+    try{ setStatus('Memuat data…'); COMMENTS = await apiList(); setStatus(''); render(); }
+    catch(e){ console.error('Load error:', e); setStatus('Gagal memuat: ' + (e.message||'cek Console/Network'), false); }
+  }
+
+  // Kirim komentar
+  const btnKirim = $('#kirimBtn');
+  btnKirim.addEventListener('click', async ()=>{
+    const nama = $('#namaInput').value.trim() || 'Tamu';
+    const presensi = $('#presensi').value;
+    const pesan = $('#pesanInput').value.trim();
+    if(!pesan){ alert('Tulis ucapan dulu ya'); return; }
+    try{
+      btnKirim.disabled = true; btnKirim.textContent = 'Mengirim…'; setStatus('Mengirim komentar…');
+      await apiAdd({nama, presensi, pesan, to:guest});
+      $('#pesanInput').value=''; setStatus('Terkirim'); loadAndRender();
+    }catch(e){
+      console.error('Send error:', e);
+      setStatus('Gagal mengirim komentar: ' + (e.message||''), false);
+    }finally{
+      btnKirim.disabled = false; btnKirim.textContent = '✈️ Send';
+    }
+  });
+
+  // Bottom nav active
+  const tabs = $$('.tabnav .tab');
+  const sections = ['home','mempelai','tanggal','galeri','ucapan'].map(id=>document.getElementById(id));
+  window.addEventListener('scroll', ()=>{ const y=window.scrollY+120; let cur='home'; sections.forEach(sec=>{ if(sec.offsetTop<=y) cur=sec.id; }); tabs.forEach(a=>a.classList.toggle('active', a.dataset.tab===cur)); });
+
+  // Load awal
+  loadAndRender();
+</script>
+</body>
+</html>
